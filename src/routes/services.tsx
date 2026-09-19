@@ -96,11 +96,11 @@ function Services() {
         {services.map((service, i) => (
           <section
             key={service.no}
-            className={`section-y relative ${i % 2 === 1 ? "bg-surface" : "bg-background"}`}
+            className={`section-y-compact relative ${i % 2 === 1 ? "bg-surface" : "bg-background"}`}
           >
             <div className="container-x">
               <div
-                className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-20 ${
+                className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
                   i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
@@ -126,7 +126,7 @@ function Services() {
                     {service.title}
                   </h2>
                   <p className="mt-5 text-base leading-relaxed text-ink-muted">{service.text}</p>
-                  <ul className="mt-8 space-y-3 border-t border-border pt-7">
+                  <ul className="mt-6 space-y-3 border-t border-border pt-5">
                     {service.points.map((point) => (
                       <li key={point} className="flex gap-3 text-sm text-ink-muted">
                         <span

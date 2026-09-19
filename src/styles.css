@@ -143,6 +143,16 @@
   }
 }
 
+@utility section-y-compact {
+  padding-block: 2.75rem;
+  @media (min-width: 768px) {
+    padding-block: 3.5rem;
+  }
+  @media (min-width: 1280px) {
+    padding-block: 4.25rem;
+  }
+}
+
 @utility eyebrow {
   display: inline-flex;
   align-items: center;
