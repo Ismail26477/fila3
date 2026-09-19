@@ -100,7 +100,7 @@ function ProductDetail() {
               alt={`${product.name} — active pharmaceutical ingredient visual`}
               width={1200}
               height={912}
-              className="aspect-4/3 w-full object-cover"
+              className="aspect-4/3 w-full bg-white object-contain"
             />
           </div>
         </div>
