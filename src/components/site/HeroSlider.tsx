@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import hero1 from "@/assets/hero-1-plant.webp";
 import hero2 from "@/assets/hero-2-qc.webp";
-import hero3 from "@/assets/hero-3-glassware.webp";
+import hero3 from "@/assets/hero-4-facility.webp";
 import { ButtonLink } from "./Button";
 
 const slides = [
@@ -28,7 +28,7 @@ const slides = [
     title: "Science That Builds Trust",
     highlight: "Builds Trust",
     text: "We work with our customers as technical partners, sharing data, documentation and clarity at every step.",
-    alt: "Laboratory glassware and vials with crystalline chemical powder",
+    alt: "Filament Lifesciences pharmaceutical manufacturing facility with stainless steel processing equipment",
   },
 ];
 
