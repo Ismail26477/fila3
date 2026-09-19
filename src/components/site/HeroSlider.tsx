@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import hero1 from "@/assets/hero-1-plant.webp";
 import hero2 from "@/assets/hero-2-qc.webp";
 import hero3 from "@/assets/hero-3-laboratory.png";
@@ -13,6 +13,7 @@ const slides = [
     highlight: "Precision & Innovation",
     text: "An Indian life-sciences company built around active pharmaceutical ingredients, intermediates and disciplined scientific practice.",
     alt: "Filament Lifesciences technicians in branded lab coats beside stainless steel API reactors",
+    position: "center center",
   },
   {
     image: hero2,
@@ -21,6 +22,7 @@ const slides = [
     highlight: "Every Molecule",
     text: "Careful process control and analytical rigour guide how our products are developed and released.",
     alt: "Filament Lifesciences scientist in a branded lab coat inspecting a sample vial",
+    position: "center center",
   },
   {
     image: hero3,
@@ -29,6 +31,7 @@ const slides = [
     highlight: "Builds Trust",
     text: "We work with our customers as technical partners, sharing data, documentation and clarity at every step.",
     alt: "Modern analytical laboratory with stainless steel pharmaceutical equipment",
+    position: "center center",
   },
 ];
 
@@ -36,29 +39,98 @@ export function HeroSlider() {
   const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
 
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+
+  /*
+   * Auto slide
+   */
   useEffect(() => {
     if (reduced) return;
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % slides.length), 6000);
+
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length);
+    }, 6000);
+
     return () => window.clearInterval(id);
   }, [reduced]);
 
-  const slide = slides[index]!;
+  /*
+   * Mobile swipe
+   */
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+
+    const diffX = touchStartX.current - endX;
+    const diffY = touchStartY.current - endY;
+
+    // Ignore normal vertical scrolling
+    if (Math.abs(diffX) < Math.abs(diffY)) return;
+
+    // Minimum swipe distance
+    if (Math.abs(diffX) < 50) return;
+
+    if (diffX > 0) {
+      setIndex((i) => (i + 1) % slides.length);
+    } else {
+      setIndex((i) => (i - 1 + slides.length) % slides.length);
+    }
+  };
+
+  const slide = slides[index];
+
   const [before, after] = slide.title.split(slide.highlight);
 
   return (
     <section
       aria-label="Introduction"
-      className="relative isolate h-[100svh] overflow-hidden bg-ink-deep text-primary-foreground"
+      className="
+        relative isolate
+        h-[100dvh]
+        min-h-[620px]
+        w-full
+        overflow-hidden
+        bg-ink-deep
+        text-primary-foreground
+      "
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* A continuous track keeps the next image beside the current one, so slides never fade through an empty frame. */}
+      {/* ================================
+          IMAGE SLIDER
+      ================================= */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="flex h-full w-full"
-          animate={{ x: `${index * -100}%` }}
-          transition={{ duration: reduced ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
+          animate={{
+            x: `-${index * 100}vw`,
+          }}
+          transition={{
+            duration: reduced ? 0 : 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          style={{
+            width: `${slides.length * 100}vw`,
+          }}
         >
           {slides.map((item, i) => (
-            <div key={item.title} className="relative h-full min-w-full shrink-0">
+            <div
+              key={item.title}
+              className="
+                relative
+                h-full
+                w-screen
+                min-w-[100vw]
+                shrink-0
+                overflow-hidden
+              "
+            >
               <img
                 src={item.image}
                 alt={i === index ? item.alt : ""}
@@ -67,41 +139,150 @@ export function HeroSlider() {
                 decoding="async"
                 width={1920}
                 height={1080}
-                className="size-full object-cover"
+                className="
+                  h-full
+                  w-full
+                  object-cover
+                  object-center
+                  md:object-center
+                "
+                style={{
+                  objectPosition: item.position,
+                }}
+              />
+
+              {/* Dark overlay */}
+              <div
+                className="
+                  absolute inset-0
+                  bg-gradient-to-r
+                  from-black/75
+                  via-black/35
+                  to-black/10
+                  md:from-black/65
+                  md:via-black/25
+                  md:to-transparent
+                "
+              />
+
+              {/* Extra bottom gradient for mobile */}
+              <div
+                className="
+                  absolute inset-x-0 bottom-0 h-[55%]
+                  bg-gradient-to-t
+                  from-black/70
+                  via-black/20
+                  to-transparent
+                  md:hidden
+                "
               />
             </div>
           ))}
         </motion.div>
       </div>
 
-      <div className="relative flex h-full items-center">
+      {/* ================================
+          CONTENT
+      ================================= */}
+      <div className="relative z-10 flex h-full items-center">
         <div className="container-x w-full">
-          <div className="max-w-2xl pt-24 pb-24 md:pt-20">
+          <div
+            className="
+              max-w-2xl
+              pt-20
+              pb-24
+              sm:pt-24
+              md:pt-20
+            "
+          >
+            {/* Eyebrow */}
             <p className="eyebrow-light">
-              <span className="h-px w-8 bg-brand-teal" aria-hidden="true" />
+              <span
+                className="h-px w-8 bg-brand-teal"
+                aria-hidden="true"
+              />
               {slide.eyebrow}
             </p>
-            <h1 className="mt-5 text-3xl leading-[1.08] font-extrabold sm:text-5xl lg:text-6xl">
+
+            {/* Heading */}
+            <h1
+              className="
+                mt-4
+                max-w-[720px]
+                text-3xl
+                leading-[1.08]
+                font-extrabold
+                sm:text-5xl
+                lg:text-6xl
+              "
+            >
               {before}
+
               <span className="text-brand-teal">
                 {slide.highlight}
               </span>
+
               {after}
             </h1>
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-primary-foreground/80 sm:text-lg">
+
+            {/* Description */}
+            <p
+              className="
+                mt-4
+                max-w-xl
+                text-sm
+                leading-relaxed
+                text-primary-foreground/85
+                sm:mt-5
+                sm:text-lg
+              "
+            >
               {slide.text}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+
+            {/* Buttons */}
+            <div
+              className="
+                mt-6
+                flex
+                flex-wrap
+                gap-3
+                sm:mt-8
+              "
+            >
               <ButtonLink to="/products" variant="light">
                 Explore Products
               </ButtonLink>
+
               <ButtonLink to="/contact" variant="ghost">
                 Request an Enquiry
               </ButtonLink>
             </div>
 
-            <ul className="mt-10 hidden flex-wrap gap-x-10 gap-y-4 border-t border-primary-foreground/15 pt-7 text-xs tracking-[0.18em] text-primary-foreground/65 uppercase sm:flex">
-              {["Precision", "Quality", "Reliability", "Scientific Approach"].map((item) => (
+            {/* Desktop feature list */}
+            <ul
+              className="
+                mt-10
+                hidden
+                flex-wrap
+                gap-x-10
+                gap-y-4
+                border-t
+                border-primary-foreground/15
+                pt-7
+                text-xs
+                tracking-[0.18em]
+                text-primary-foreground/65
+                uppercase
+                sm:flex
+              "
+            >
+              {[
+                "Precision",
+                "Quality",
+                "Reliability",
+                "Scientific Approach",
+              ].map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
@@ -109,8 +290,19 @@ export function HeroSlider() {
         </div>
       </div>
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-7 left-0 w-full">
+      {/* ================================
+          SLIDE INDICATORS
+      ================================= */}
+      <div
+        className="
+          absolute
+          bottom-6
+          left-0
+          z-20
+          w-full
+          sm:bottom-7
+        "
+      >
         <div className="container-x flex gap-2">
           {slides.map((s, i) => (
             <button
@@ -119,9 +311,17 @@ export function HeroSlider() {
               onClick={() => setIndex(i)}
               aria-label={`Show slide ${i + 1}`}
               aria-current={i === index}
-              className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-10 bg-brand-teal" : "w-4 bg-primary-foreground/40"
-              }`}
+              className={`
+                h-1.5
+                rounded-full
+                transition-all
+                duration-300
+                ${
+                  i === index
+                    ? "w-10 bg-brand-teal"
+                    : "w-4 bg-primary-foreground/40"
+                }
+              `}
             />
           ))}
         </div>
