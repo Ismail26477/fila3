@@ -28,6 +28,8 @@ export const products: Product[] = [
     application: "Antitrypanosomal Agent",
     category: "APIs & Intermediates",
     image: product1,
+    description:
+      "Isometamidium chloride hydrochloride is a veterinary medication used to treat and prevent protozoal infections, specifically animal trypanosomiasis in livestock.",
   },
   {
     id: "homidium-bromide",
@@ -36,6 +38,8 @@ export const products: Product[] = [
     application: "Antiprotozoal (Trypanosoma)",
     category: "APIs & Intermediates",
     image: product2,
+    description:
+      "Homidium bromide, also known chemically and commonly as ethidium bromide, is an intercalating agent and veterinary medication used to treat protozoal infections like trypanosomiasis in livestock.",
   },
   {
     id: "homidium-chloride",
@@ -44,6 +48,8 @@ export const products: Product[] = [
     application: "Antiprotozoal (Trypanosoma)",
     category: "APIs & Intermediates",
     image: product3,
+    description:
+      "Homidium chloride, also known as ethidium chloride, is the chloride salt of ethidium and functions as both a nucleic acid intercalating agent and a veterinary trypanocidal drug.",
   },
 ];
 

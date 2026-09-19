@@ -119,8 +119,8 @@ function ProductDetail() {
           </Reveal>
           <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-ink-muted">
             <p>
-              {product.name} is listed in our portfolio under {product.category}, identified by CAS
-              number {product.casNumber} and used as {product.application.toLowerCase()}.
+              {product.description ??
+                `${product.name} is listed in our portfolio under ${product.category}, identified by CAS number ${product.casNumber} and used as ${product.application.toLowerCase()}.`}
             </p>
             <p>
               Further technical details — specification sheets, packaging and lead-time information —
