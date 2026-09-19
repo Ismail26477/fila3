@@ -100,15 +100,6 @@ function Home() {
                 className="aspect-4/5 w-full object-cover"
               />
             </div>
-            <div
-              className="absolute -bottom-8 -left-6 hidden rounded-2xl border border-border bg-card p-6 shadow-lift lg:block"
-            >
-              <p className="text-xs font-semibold tracking-[0.2em] text-ink-muted uppercase">
-                Incorporated in
-              </p>
-              <p className="mt-2 font-display text-2xl font-bold text-ink">Maharashtra, India</p>
-              <p className="mt-1 text-xs text-muted-foreground">CIN {company.cin}</p>
-            </div>
           </Reveal>
 
           <div>
