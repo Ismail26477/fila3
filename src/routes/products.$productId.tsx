@@ -100,7 +100,7 @@ function ProductDetail() {
               alt={`${product.name} — active pharmaceutical ingredient visual`}
               width={1200}
               height={912}
-              className="aspect-4/3 w-full object-cover"
+              className="aspect-4/3 w-full bg-white object-contain"
             />
           </div>
         </div>
@@ -108,19 +108,11 @@ function ProductDetail() {
 
       <section className="section-y bg-background">
         <div className="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <Reveal>
-            <p className="eyebrow">
-              <span className="h-px w-8 bg-brand-teal" aria-hidden="true" />
-              Product Information
-            </p>
-            <h2 className="mt-6 text-2xl font-extrabold text-ink sm:text-3xl">
-              What we can share today
-            </h2>
-          </Reveal>
+
           <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-ink-muted">
             <p>
-              {product.name} is listed in our portfolio under {product.category}, identified by CAS
-              number {product.casNumber} and used as {product.application.toLowerCase()}.
+              {product.description ??
+                `${product.name} is listed in our portfolio under ${product.category}, identified by CAS number ${product.casNumber} and used as ${product.application.toLowerCase()}.`}
             </p>
             <p>
               Further technical details — specification sheets, packaging and lead-time information —

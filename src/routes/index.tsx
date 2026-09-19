@@ -6,12 +6,10 @@ import homeSupport from "@/assets/home-support.webp";
 import { ButtonLink } from "@/components/site/Button";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { HeroSlider } from "@/components/site/HeroSlider";
-import { LocationCards } from "@/components/site/LocationCards";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Reveal } from "@/components/site/Reveal";
 import { Testimonials } from "@/components/site/Testimonials";
 import { products } from "@/data/products";
-import { company } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -100,15 +98,6 @@ function Home() {
                 className="aspect-4/5 w-full object-cover"
               />
             </div>
-            <div
-              className="absolute -bottom-8 -left-6 hidden rounded-2xl border border-border bg-card p-6 shadow-lift lg:block"
-            >
-              <p className="text-xs font-semibold tracking-[0.2em] text-ink-muted uppercase">
-                Incorporated in
-              </p>
-              <p className="mt-2 font-display text-2xl font-bold text-ink">Maharashtra, India</p>
-              <p className="mt-1 text-xs text-muted-foreground">CIN {company.cin}</p>
-            </div>
           </Reveal>
 
           <div>
@@ -124,15 +113,20 @@ function Home() {
             <Reveal delay={0.1}>
               <div className="mt-7 space-y-5 text-base leading-relaxed text-ink-muted">
                 <p>
-                  {company.name} is an Indian life-sciences company working in active
-                  pharmaceutical ingredients and intermediates. The company is registered in Nagpur,
-                  Maharashtra, with its manufacturing address at the IIE Growth Centre in Kotdwar,
-                  Uttarakhand.
+                  Filament Lifesciences is a focused life-sciences company working across active
+                  pharmaceutical ingredients and intermediates for veterinary and pharmaceutical
+                  applications.
                 </p>
                 <p>
-                  Our approach is deliberately simple: define the chemistry precisely, control the
-                  process, document what we do, and stay accessible to the customers who rely on our
-                  products. As our portfolio and capabilities grow, this page will grow with them.
+                  We combine chemistry-led thinking with disciplined documentation, analytical
+                  clarity and dependable communication. Our team supports customers from product
+                  evaluation through technical discussions, helping them make informed decisions
+                  about quality, application and supply.
+                </p>
+                <p>
+                  Our growing portfolio reflects a practical commitment to precision, consistency
+                  and long-term partnerships. We share clear product information and stay close to
+                  the details that matter at every stage of collaboration.
                 </p>
               </div>
               <div className="mt-9 flex flex-wrap gap-3">
@@ -288,24 +282,6 @@ function Home() {
 
       {/* Testimonials */}
       <Testimonials />
-
-      {/* Presence */}
-      <section className="section-y bg-background pt-8 md:pt-12 lg:pt-16">
-        <div className="container-x">
-          <Reveal className="max-w-2xl">
-            <p className="eyebrow">
-              <span className="h-px w-8 bg-brand-teal" aria-hidden="true" />
-              Our Presence
-            </p>
-            <h2 className="mt-6 text-3xl leading-tight font-extrabold text-ink sm:text-4xl">
-              Registered in Nagpur. Manufacturing in Kotdwar.
-            </h2>
-          </Reveal>
-          <div className="mt-12">
-            <LocationCards />
-          </div>
-        </div>
-      </section>
 
       <CtaBanner
         image={ctaHome}

@@ -25,9 +25,9 @@ export function Footer() {
               ingredients and intermediates, built around scientific precision and dependable
               quality practices.
             </p>
-            <p className="mt-6 text-xs tracking-wide text-primary-foreground/50">
-              Founded {company.foundedYear} · CIN: {company.cin}
-            </p>
+  <p className="mt-6 text-xs tracking-wide text-primary-foreground/50">
+    Founded {company.foundedYear}
+  </p>
           </div>
 
           <nav aria-label="Footer">

@@ -40,8 +40,8 @@ function About() {
       />
 
       {/* Who we are */}
-      <section className="section-y bg-background">
-        <div className="container-x grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+      <section className="section-y-compact bg-background">
+        <div className="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <Reveal>
               <p className="eyebrow">
@@ -98,7 +98,7 @@ function About() {
               Mission &amp; Vision
             </p>
           </Reveal>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="mt-7 grid gap-6 lg:grid-cols-2">
             <Reveal className="relative overflow-hidden rounded-3xl bg-ink p-9 text-primary-foreground md:p-14">
               <div className="absolute inset-0 grid-lines opacity-40" aria-hidden="true" />
               <div className="relative">
@@ -147,7 +147,7 @@ function About() {
               Where we are located
             </h2>
           </Reveal>
-          <div className="mt-12">
+          <div className="mt-8">
             <LocationCards variant="dark" />
           </div>
         </div>
