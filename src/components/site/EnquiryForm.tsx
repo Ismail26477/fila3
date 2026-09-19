@@ -2,12 +2,13 @@ import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "./Button";
+import { whatsappNumber } from "@/lib/site";
 
 const fields = [
   { name: "fullName", label: "Full Name", type: "text", required: true },
   { name: "companyName", label: "Company Name", type: "text", required: false },
   { name: "email", label: "Email", type: "email", required: true },
-  { name: "phone", label: "Phone", type: "tel", required: false },
+  { name: "phone", label: "Phone", type: "tel", required: true },
   { name: "product", label: "Product / Service", type: "text", required: false },
 ] as const;
 
@@ -30,6 +31,7 @@ export function EnquiryForm({ defaultProduct = "" }: { defaultProduct?: string }
     if (!(values["fullName"] ?? "").trim()) next["fullName"] = "Please enter your full name.";
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((values["email"] ?? "").trim()))
       next["email"] = "Please enter a valid email address.";
+    if (!(values["phone"] ?? "").trim()) next["phone"] = "Please enter your phone number.";
     if ((values["message"] ?? "").trim().length < 10)
       next["message"] = "Please add a few details (10 characters or more).";
     setErrors(next);
@@ -41,6 +43,7 @@ export function EnquiryForm({ defaultProduct = "" }: { defaultProduct?: string }
     if (!validate()) return;
 
     setStatus("loading");
+    const whatsappWindow = window.open("about:blank", "_blank");
     try {
       const res = await fetch("/api/public/contact", {
         method: "POST",
@@ -57,14 +60,31 @@ export function EnquiryForm({ defaultProduct = "" }: { defaultProduct?: string }
       const data = (await res.json()) as { ok: boolean; message: string };
 
       if (!res.ok || !data.ok) {
+        whatsappWindow?.close();
         setStatus("error");
         setFeedback(data.message ?? "Something went wrong. Please try again.");
         return;
       }
+      const whatsappMessage = [
+        "New enquiry from Filament Lifesciences",
+        `Full Name: ${values["fullName"] ?? ""}`,
+        `Company Name: ${values["companyName"] ?? "Not provided"}`,
+        `Email: ${values["email"] ?? ""}`,
+        `Phone: ${values["phone"] ?? ""}`,
+        `Product / Service: ${values["product"] ?? "Not provided"}`,
+        `Message: ${values["message"] ?? ""}`,
+      ].join("\\n");
+      const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^\\d]/g, "")}?text=${encodeURIComponent(whatsappMessage)}`;
+      if (whatsappWindow) {
+        whatsappWindow.location.href = whatsappUrl;
+      } else {
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      }
       setStatus("success");
-      setFeedback(data.message);
+      setFeedback("Your enquiry was submitted. WhatsApp is opening with your enquiry details.");
       setValues({ product: defaultProduct });
     } catch {
+      whatsappWindow?.close();
       setStatus("error");
       setFeedback("Network error. Please try again or email us directly.");
     }
