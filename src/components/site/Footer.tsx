@@ -11,15 +11,15 @@ export function Footer() {
       <div className="container-x relative py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_0.7fr_1.2fr]">
           <div className="max-w-sm">
-            <img
-              src="/filament-logo-transparent.png"
-              alt={`${company.name} logo`}
-              width={740}
-              height={270}
-              loading="lazy"
-              decoding="async"
-              className="h-11 w-auto"
-            />
+           <img
+  src="/filament-logo-transparent.png"
+  alt={`${company.name} logo`}
+  width={740}
+  height={270}
+  loading="lazy"
+  decoding="async"
+  className="h-14 w-auto"
+/>
             <p className="mt-6 text-sm leading-relaxed text-primary-foreground/70">
               {company.name} is an Indian life-sciences company focused on active pharmaceutical
               ingredients and intermediates, built around scientific precision and dependable
