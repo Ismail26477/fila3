@@ -108,15 +108,7 @@ function ProductDetail() {
 
       <section className="section-y bg-background">
         <div className="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <Reveal>
-            <p className="eyebrow">
-              <span className="h-px w-8 bg-brand-teal" aria-hidden="true" />
-              Product Information
-            </p>
-            <h2 className="mt-6 text-2xl font-extrabold text-ink sm:text-3xl">
-              What we can share today
-            </h2>
-          </Reveal>
+
           <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-ink-muted">
             <p>
               {product.description ??
