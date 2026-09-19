@@ -34,12 +34,12 @@ export function Header() {
       <div className="container-x flex h-18 items-center justify-between gap-4 py-3 md:h-20">
         <Link to="/" className="flex min-w-0 items-center" aria-label={`${company.name} — home`}>
           <img
-            src="/filament-logo-transparent.png"
-            alt={`${company.name} logo`}
-            width={740}
-            height={270}
-            className="h-9 w-auto md:h-11"
-          />
+  src="/filament-logo-transparent.png"
+  alt={`${company.name} logo`}
+  width={740}
+  height={270}
+  className="h-12 w-auto md:h-16 lg:h-18"
+/>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
