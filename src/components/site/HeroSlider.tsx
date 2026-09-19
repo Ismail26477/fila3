@@ -13,8 +13,14 @@ const slides = [
     highlight: "Precision & Innovation",
     text: "An Indian life-sciences company built around active pharmaceutical ingredients, intermediates and disciplined scientific practice.",
     alt: "Filament Lifesciences technicians in branded lab coats beside stainless steel API reactors",
-    position: "center center",
+
+    // Desktop position
+    desktopPosition: "center center",
+
+    // Mobile position
+    mobilePosition: "58% center",
   },
+
   {
     image: hero2,
     eyebrow: "Quality Culture",
@@ -22,8 +28,11 @@ const slides = [
     highlight: "Every Molecule",
     text: "Careful process control and analytical rigour guide how our products are developed and released.",
     alt: "Filament Lifesciences scientist in a branded lab coat inspecting a sample vial",
-    position: "center center",
+
+    desktopPosition: "center center",
+    mobilePosition: "62% center",
   },
+
   {
     image: hero3,
     eyebrow: "Scientific Approach",
@@ -31,32 +40,35 @@ const slides = [
     highlight: "Builds Trust",
     text: "We work with our customers as technical partners, sharing data, documentation and clarity at every step.",
     alt: "Modern analytical laboratory with stainless steel pharmaceutical equipment",
-    position: "center center",
+
+    desktopPosition: "center center",
+    mobilePosition: "50% center",
   },
 ];
 
 export function HeroSlider() {
   const reduced = useReducedMotion();
+
   const [index, setIndex] = useState(0);
 
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
   /*
-   * Auto slide
+   * AUTO SLIDER
    */
   useEffect(() => {
     if (reduced) return;
 
     const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
+      setIndex((current) => (current + 1) % slides.length);
     }, 6000);
 
     return () => window.clearInterval(id);
   }, [reduced]);
 
   /*
-   * Mobile swipe
+   * MOBILE SWIPE
    */
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -70,16 +82,24 @@ export function HeroSlider() {
     const diffX = touchStartX.current - endX;
     const diffY = touchStartY.current - endY;
 
-    // Ignore normal vertical scrolling
-    if (Math.abs(diffX) < Math.abs(diffY)) return;
+    // Allow normal vertical page scrolling
+    if (Math.abs(diffY) > Math.abs(diffX)) {
+      return;
+    }
 
-    // Minimum swipe distance
-    if (Math.abs(diffX) < 50) return;
+    // Ignore very small movements
+    if (Math.abs(diffX) < 50) {
+      return;
+    }
 
     if (diffX > 0) {
-      setIndex((i) => (i + 1) % slides.length);
+      // Swipe left
+      setIndex((current) => (current + 1) % slides.length);
     } else {
-      setIndex((i) => (i - 1 + slides.length) % slides.length);
+      // Swipe right
+      setIndex(
+        (current) => (current - 1 + slides.length) % slides.length
+      );
     }
   };
 
@@ -90,24 +110,29 @@ export function HeroSlider() {
   return (
     <section
       aria-label="Introduction"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       className="
-        relative isolate
+        relative
+        isolate
         h-[100dvh]
-        min-h-[620px]
+        min-h-[650px]
         w-full
         overflow-hidden
         bg-ink-deep
         text-primary-foreground
+        [touch-action:pan-y]
       "
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
     >
-      {/* ================================
+
+      {/* =====================================================
           IMAGE SLIDER
-      ================================= */}
+      ====================================================== */}
+
       <div className="absolute inset-0 overflow-hidden">
+
         <motion.div
-          className="flex h-full w-full"
+          className="flex h-full"
           animate={{
             x: `-${index * 100}vw`,
           }}
@@ -119,6 +144,7 @@ export function HeroSlider() {
             width: `${slides.length * 100}vw`,
           }}
         >
+
           {slides.map((item, i) => (
             <div
               key={item.title}
@@ -131,6 +157,9 @@ export function HeroSlider() {
                 overflow-hidden
               "
             >
+
+              {/* IMAGE */}
+
               <img
                 src={item.image}
                 alt={i === index ? item.alt : ""}
@@ -139,83 +168,152 @@ export function HeroSlider() {
                 decoding="async"
                 width={1920}
                 height={1080}
+                draggable={false}
                 className="
+                  absolute
+                  inset-0
                   h-full
                   w-full
                   object-cover
-                  object-center
-                  md:object-center
+
+                  [object-position:var(--mobile-position)]
+
+                  md:[object-position:var(--desktop-position)]
                 "
-                style={{
-                  objectPosition: item.position,
-                }}
+                style={
+                  {
+                    "--mobile-position": item.mobilePosition,
+                    "--desktop-position": item.desktopPosition,
+                  } as React.CSSProperties
+                }
               />
 
-              {/* Dark overlay */}
+              {/* =================================================
+                  MOBILE IMAGE DARKENING
+                  Mostly bottom so image remains visible
+              ================================================== */}
+
               <div
                 className="
-                  absolute inset-0
-                  bg-gradient-to-r
-                  from-black/75
-                  via-black/35
-                  to-black/10
+                  pointer-events-none
+                  absolute
+                  inset-0
+
+                  bg-gradient-to-b
+                  from-black/10
+                  via-black/10
+                  to-black/20
+
+                  md:bg-gradient-to-r
                   md:from-black/65
                   md:via-black/25
                   md:to-transparent
                 "
               />
 
-              {/* Extra bottom gradient for mobile */}
+              {/* =================================================
+                  MOBILE BOTTOM GRADIENT
+              ================================================== */}
+
               <div
                 className="
-                  absolute inset-x-0 bottom-0 h-[55%]
+                  pointer-events-none
+                  absolute
+                  inset-x-0
+                  bottom-0
+                  h-[62%]
+
                   bg-gradient-to-t
-                  from-black/70
-                  via-black/20
+                  from-black/85
+                  via-black/55
                   to-transparent
+
                   md:hidden
                 "
               />
+
             </div>
           ))}
+
         </motion.div>
       </div>
 
-      {/* ================================
+
+      {/* =====================================================
           CONTENT
-      ================================= */}
-      <div className="relative z-10 flex h-full items-center">
+      ====================================================== */}
+
+      <div
+        className="
+          relative
+          z-10
+          flex
+          h-full
+          items-end
+
+          md:items-center
+        "
+      >
+
         <div className="container-x w-full">
+
           <div
             className="
               max-w-2xl
-              pt-20
+
               pb-24
-              sm:pt-24
+
+              sm:pb-28
+
               md:pt-20
+              md:pb-20
             "
           >
-            {/* Eyebrow */}
-            <p className="eyebrow-light">
+
+            {/* EYEBROW */}
+
+            <p
+              className="
+                eyebrow-light
+                text-[9px]
+                sm:text-xs
+              "
+            >
               <span
-                className="h-px w-8 bg-brand-teal"
+                className="
+                  h-px
+                  w-7
+                  bg-brand-teal
+                  sm:w-8
+                "
                 aria-hidden="true"
               />
+
               {slide.eyebrow}
             </p>
 
-            {/* Heading */}
+
+            {/* TITLE */}
+
             <h1
               className="
-                mt-4
-                max-w-[720px]
-                text-3xl
+                mt-3
+                max-w-[350px]
+
+                text-[28px]
                 leading-[1.08]
                 font-extrabold
-                sm:text-5xl
+
+                sm:text-4xl
+
+                md:mt-5
+                md:max-w-[720px]
+                md:text-5xl
+
                 lg:text-6xl
               "
             >
+
               {before}
 
               <span className="text-brand-teal">
@@ -223,76 +321,114 @@ export function HeroSlider() {
               </span>
 
               {after}
+
             </h1>
 
-            {/* Description */}
+
+            {/* DESCRIPTION */}
+
             <p
               className="
-                mt-4
-                max-w-xl
-                text-sm
-                leading-relaxed
+                mt-3
+                max-w-[360px]
+
+                text-[11px]
+                leading-[1.5]
                 text-primary-foreground/85
-                sm:mt-5
-                sm:text-lg
+
+                sm:text-sm
+
+                md:mt-5
+                md:max-w-xl
+                md:text-lg
               "
             >
               {slide.text}
             </p>
 
-            {/* Buttons */}
+
+            {/* BUTTONS */}
+
             <div
               className="
-                mt-6
+                mt-5
                 flex
                 flex-wrap
-                gap-3
-                sm:mt-8
+                gap-2
+
+                sm:mt-6
+                sm:gap-3
+
+                md:mt-8
               "
             >
-              <ButtonLink to="/products" variant="light">
+
+              <ButtonLink
+                to="/products"
+                variant="light"
+              >
                 Explore Products
               </ButtonLink>
 
-              <ButtonLink to="/contact" variant="ghost">
+              <ButtonLink
+                to="/contact"
+                variant="ghost"
+              >
                 Request an Enquiry
               </ButtonLink>
+
             </div>
 
-            {/* Desktop feature list */}
+
+            {/* DESKTOP FEATURES */}
+
             <ul
               className="
                 mt-10
                 hidden
+
                 flex-wrap
                 gap-x-10
                 gap-y-4
+
                 border-t
                 border-primary-foreground/15
+
                 pt-7
+
                 text-xs
                 tracking-[0.18em]
                 text-primary-foreground/65
                 uppercase
+
                 sm:flex
               "
             >
+
               {[
                 "Precision",
                 "Quality",
                 "Reliability",
                 "Scientific Approach",
               ].map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>
+                  {item}
+                </li>
               ))}
+
             </ul>
+
           </div>
+
         </div>
+
       </div>
 
-      {/* ================================
+
+      {/* =====================================================
           SLIDE INDICATORS
-      ================================= */}
+      ====================================================== */}
+
       <div
         className="
           absolute
@@ -300,10 +436,13 @@ export function HeroSlider() {
           left-0
           z-20
           w-full
+
           sm:bottom-7
         "
       >
+
         <div className="container-x flex gap-2">
+
           {slides.map((s, i) => (
             <button
               key={s.title}
@@ -316,6 +455,7 @@ export function HeroSlider() {
                 rounded-full
                 transition-all
                 duration-300
+
                 ${
                   i === index
                     ? "w-10 bg-brand-teal"
@@ -324,8 +464,11 @@ export function HeroSlider() {
               `}
             />
           ))}
+
         </div>
+
       </div>
+
     </section>
   );
 }
