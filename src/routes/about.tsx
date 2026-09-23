@@ -85,6 +85,16 @@ function About() {
                 className="aspect-4/5 w-full object-cover"
               />
             </div>
+            <div className="mt-6 rounded-3xl border border-border bg-surface p-7">
+              <p className="eyebrow">Our approach</p>
+              <h3 className="mt-4 text-2xl font-extrabold leading-tight text-ink">
+                Quality you can build a partnership around
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-ink-muted">
+                From product evaluation to ongoing supply discussions, we keep communication clear,
+                documentation organised and every conversation focused on your requirements.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
