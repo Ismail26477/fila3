@@ -49,25 +49,25 @@ function About() {
                 Who We Are
               </p>
               <h2 className="mt-6 text-3xl leading-tight font-extrabold text-ink sm:text-4xl">
-                A company defined by chemistry, discipline and clarity
+                Advancing Animal Health Through Chemistry, Quality &amp; Reliability
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-7 space-y-5 text-base leading-relaxed text-ink-muted">
                 <p>
-                  {company.name} operates in the active pharmaceutical ingredient and intermediate
-                  segment. The company is registered at 166, Amrta Manor, Civil Lines, Nagpur,
-                  Maharashtra, and its factory address is A5B, IIE Growth Centre Sigaddi, Sidcul,
-                  Kotdwar, Pauri Garhwal, Uttarakhand.
+                  {company.name} is an India-based manufacturer of active pharmaceutical ingredients
+                  and pharmaceutical intermediates for veterinary applications. We serve the global
+                  animal-health industry with a focus on consistent quality, reliability and flexible
+                  manufacturing.
                 </p>
                 <p>
-                  Rather than publishing claims we cannot yet substantiate, we prefer to describe
-                  how we work: precise specifications, controlled processes, documented decisions
-                  and open technical dialogue with the organisations that evaluate our products.
+                  Our portfolio includes Homidium Chloride, Isometamidium Chloride Hydrochloride and
+                  Homidium Bromide, supporting veterinary applications including antiprotozoal treatments.
                 </p>
                 <p>
-                  Additional company information — capabilities, approvals and portfolio expansion —
-                  will be published here as it becomes available.
+                  Our commitment is built around quality-driven manufacturing, controlled processes and
+                  dependable customer support. We believe lasting partnerships are built through
+                  consistency, transparency and continuous improvement.
                 </p>
               </div>
             </Reveal>
@@ -84,6 +84,16 @@ function About() {
                 height={1504}
                 className="aspect-4/5 w-full object-cover"
               />
+            </div>
+            <div className="mt-6 rounded-3xl border border-border bg-surface p-7">
+              <p className="eyebrow">Our approach</p>
+              <h3 className="mt-4 text-2xl font-extrabold leading-tight text-ink">
+                Quality you can build a partnership around
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-ink-muted">
+                From product evaluation to ongoing supply discussions, we keep communication clear,
+                documentation organised and every conversation focused on your requirements.
+              </p>
             </div>
           </Reveal>
         </div>

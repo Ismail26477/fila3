@@ -8,7 +8,7 @@ export function ProductCard({ product }: { product: Product }) {
       <Link
         to="/products/$productId"
         params={{ productId: product.id }}
-        className="relative block aspect-16/10 overflow-hidden bg-ink-deep"
+        className="relative block aspect-[4/3] overflow-hidden bg-white"
         aria-label={`View details for ${product.name}`}
       >
         <img
@@ -18,7 +18,7 @@ export function ProductCard({ product }: { product: Product }) {
           decoding="async"
           width={1200}
           height={912}
-          className="size-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"
+          className="size-full scale-[1.08] object-contain bg-white transition-transform duration-700 group-hover:scale-[1.14]"
         />
         <span className="absolute top-4 left-4 rounded-sm bg-ink-deep px-2.5 py-1 text-[10px] font-semibold tracking-[0.18em] text-primary-foreground/85 uppercase">
           {product.category}
