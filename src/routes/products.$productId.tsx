@@ -118,11 +118,23 @@ function ProductDetail() {
               Further technical details — specification sheets, packaging and lead-time information —
               are provided directly to enquiring organisations. For any question about this product,
               write to{" "}
-              <a href={`mailto:${company.email}`} className="font-semibold break-all text-ink">
+              <a href={`mailto:${company.email}`} className="whitespace-nowrap font-semibold text-ink">
                 {company.email}
               </a>
               .
             </p>
+          </Reveal>
+
+          <Reveal className="h-fit rounded-3xl border border-border bg-surface p-7 lg:mt-1 lg:p-9">
+            <p className="eyebrow">Product support</p>
+            <h2 className="mt-5 text-2xl font-extrabold text-ink">Need specifications or a quotation?</h2>
+            <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+              Share your required quantity, packaging preference and destination. Our team can provide
+              product documentation, commercial details and lead-time information for your review.
+            </p>
+            <ButtonLink to="/contact" search={{ product: product.name } as never} className="mt-6">
+              Talk to our team
+            </ButtonLink>
           </Reveal>
         </div>
       </section>

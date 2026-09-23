@@ -107,21 +107,22 @@ function Home() {
                 About Filament Lifesciences
               </p>
               <h2 className="mt-6 text-3xl leading-tight font-extrabold text-ink sm:text-4xl lg:text-[2.75rem]">
-                Building a Modern Foundation in Life Sciences
+                Advancing Animal Health Through Chemistry, Quality & Reliability
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-7 space-y-5 text-base leading-relaxed text-ink-muted">
                 <p>
-                  Filament Lifesciences is a focused life-sciences company working across active
-                  pharmaceutical ingredients and intermediates for veterinary and pharmaceutical
-                  applications.
+                  Filament Lifesciences Pvt Ltd is an India-based manufacturer of active pharmaceutical ingredients
+                  and pharmaceutical intermediates for veterinary applications. We serve the global
+                  animal-health industry with a focus on consistent quality, reliability and flexible
+                  manufacturing.
                 </p>
                 <p>
-                  We combine chemistry-led thinking with disciplined documentation, analytical
-                  clarity and dependable communication. Our team supports customers from product
-                  evaluation through technical discussions, helping them make informed decisions
-                  about quality, application and supply.
+                  Our portfolio includes Homidium Chloride, Isometamidium Chloride Hydrochloride and Homidium
+                  Bromide, supporting veterinary applications including antiprotozoal treatments. We
+                  combine quality-driven manufacturing, controlled processes and dependable customer
+                  support.
                 </p>
                 <p>
                   Our growing portfolio reflects a practical commitment to precision, consistency
