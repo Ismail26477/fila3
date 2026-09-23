@@ -119,7 +119,7 @@ function Services() {
                 </Reveal>
 
                 <Reveal delay={0.1}>
-                  <p className="font-display text-5xl font-extrabold text-mint sm:text-6xl">
+                  <p className="font-display text-5xl font-extrabold text-brand-teal sm:text-6xl">
                     {service.no}
                   </p>
                   <h2 className="mt-5 text-2xl leading-tight font-extrabold text-ink sm:text-3xl lg:text-4xl">

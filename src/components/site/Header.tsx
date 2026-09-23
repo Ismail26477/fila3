@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { company, nav } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -56,7 +56,15 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <a
+            href={`tel:+91${company.phone}`}
+            className="hidden items-center gap-2 whitespace-nowrap text-sm font-semibold text-primary-foreground transition-colors hover:text-brand-teal lg:inline-flex"
+            aria-label={`Call Filament Lifesciences at +91 ${company.phone}`}
+          >
+            <Phone className="size-4" aria-hidden="true" />
+            <span>+91 {company.phone}</span>
+          </a>
           <ButtonLink to="/contact" variant="light" className="hidden px-5 py-2.5 sm:inline-flex">
             Send Enquiry
           </ButtonLink>
