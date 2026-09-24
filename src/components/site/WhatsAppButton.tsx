@@ -8,7 +8,9 @@ import { whatsappNumber } from "@/lib/site";
 export function WhatsAppButton() {
   if (!whatsappNumber) return null;
 
-  const href = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}`;
+  const phone = whatsappNumber.replace(/[^\d]/g, "");
+  const message = "Hello, I would like to know more about Filament Lifesciences products and services.";
+  const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
   return (
     <a
