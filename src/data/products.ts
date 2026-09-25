@@ -1,6 +1,6 @@
-const product1 = "/images/isometamedium-chloride-hcl.png";
-const product2 = "/images/homidium-bromide.png";
-const product3 = "/images/homidium-chloride.png";
+const product1 = "/images/isometamedium-chloride-hcl-clean.png";
+const product2 = "/images/homidium-bromide-clean.png";
+const product3 = "/images/homidium-chloride-clean.png";
 
 export type ProductCategory = "APIs & Intermediates";
 
