@@ -64,12 +64,17 @@ function About() {
                   Our portfolio includes Homidium Chloride, Isometamidium Chloride Hydrochloride and
                   Homidium Bromide, supporting veterinary applications including antiprotozoal treatments.
                 </p>
-                <p>
-                  Our commitment is built around quality-driven manufacturing, controlled processes and
-                  dependable customer support. We believe lasting partnerships are built through
-                  consistency, transparency and continuous improvement.
-                </p>
-              </div>
+      <p>
+        Our commitment is built around quality-driven manufacturing, controlled processes and
+        dependable customer support. We believe lasting partnerships are built through
+        consistency, transparency and continuous improvement.
+      </p>
+      <p>
+        We work closely with pharmaceutical and veterinary partners to deliver dependable
+        intermediates backed by responsive communication, careful documentation and a clear
+        focus on long-term product quality.
+      </p>
+    </div>
             </Reveal>
           </div>
 
