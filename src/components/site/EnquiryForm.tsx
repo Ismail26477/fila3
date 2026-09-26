@@ -74,7 +74,7 @@ export function EnquiryForm({ defaultProduct = "" }: { defaultProduct?: string }
         `Product / Service: ${values["product"] ?? "Not provided"}`,
         `Message: ${values["message"] ?? ""}`,
       ].join("\n");
-      const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^\\d]/g, "")}?text=${encodeURIComponent(whatsappMessage)}`;
+      const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(whatsappMessage)}`;
       if (whatsappWindow) {
         whatsappWindow.location.href = whatsappUrl;
       } else {
