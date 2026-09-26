@@ -3,13 +3,14 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "./Button";
 import { whatsappNumber } from "@/lib/site";
+import { products } from "@/data/products";
 
 const fields = [
   { name: "fullName", label: "Full Name", type: "text", required: true },
-  { name: "companyName", label: "Company Name", type: "text", required: false },
+  { name: "companyName", label: "Company Name", type: "text", required: true },
   { name: "email", label: "Email", type: "email", required: true },
   { name: "phone", label: "Phone", type: "tel", required: true },
-  { name: "product", label: "Product / Service", type: "text", required: false },
+  { name: "product", label: "Product / Service", type: "select", required: true },
 ] as const;
 
 type Values = Record<string, string>;
@@ -122,20 +123,43 @@ export function EnquiryForm({ defaultProduct = "" }: { defaultProduct?: string }
               {field.label}
               {field.required && <span aria-hidden="true"> *</span>}
             </label>
-            <input
-              id={field.name}
-              name={field.name}
-              type={field.type}
-              required={field.required}
-              value={values[field.name] ?? ""}
-              onChange={(e) => set(field.name, e.target.value)}
-              aria-invalid={Boolean(errors[field.name])}
-              aria-describedby={errors[field.name] ? `${field.name}-error` : undefined}
-              className={cn(
-                "w-full rounded-md border bg-background px-4 py-3 text-sm text-ink transition-colors placeholder:text-muted-foreground/70 focus:border-brand-teal focus:outline-none",
-                errors[field.name] ? "border-destructive" : "border-input",
-              )}
-            />
+            {field.type === "select" ? (
+              <select
+                id={field.name}
+                name={field.name}
+                required={field.required}
+                value={values[field.name] ?? ""}
+                onChange={(e) => set(field.name, e.target.value)}
+                aria-invalid={Boolean(errors[field.name])}
+                aria-describedby={errors[field.name] ? `${field.name}-error` : undefined}
+                className={cn(
+                  "w-full rounded-md border bg-background px-4 py-3 text-sm text-ink transition-colors focus:border-brand-teal focus:outline-none",
+                  errors[field.name] ? "border-destructive" : "border-input",
+                )}
+              >
+                <option value="">Select a product</option>
+                {products.map((product) => (
+                  <option key={product.id} value={product.name}>
+                    {product.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                id={field.name}
+                name={field.name}
+                type={field.type}
+                required={field.required}
+                value={values[field.name] ?? ""}
+                onChange={(e) => set(field.name, e.target.value)}
+                aria-invalid={Boolean(errors[field.name])}
+                aria-describedby={errors[field.name] ? `${field.name}-error` : undefined}
+                className={cn(
+                  "w-full rounded-md border bg-background px-4 py-3 text-sm text-ink transition-colors placeholder:text-muted-foreground/70 focus:border-brand-teal focus:outline-none",
+                  errors[field.name] ? "border-destructive" : "border-input",
+                )}
+              />
+            )}
             {errors[field.name] && (
               <p id={`${field.name}-error`} className="mt-1.5 text-xs text-destructive">
                 {errors[field.name]}
