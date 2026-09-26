@@ -26,9 +26,9 @@ const testimonials = [
     "Animal health research group",
   ],
   [
-    "The purity data was clear, complete, and easy for our technical team to review.",
+    "The API quality was consistent, and the complete technical documentation made our pharmaceutical review process straightforward.",
     "Technical Director",
-    "Nutraceutical manufacturer",
+    "Pharmaceutical manufacturer",
   ],
   [
     "Filament helped us move from enquiry to qualified sample without unnecessary delays.",
