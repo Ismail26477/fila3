@@ -69,12 +69,17 @@ function About() {
         dependable customer support. We believe lasting partnerships are built through
         consistency, transparency and continuous improvement.
       </p>
-      <p>
-        We work closely with pharmaceutical and veterinary partners to deliver dependable
-        intermediates backed by responsive communication, careful documentation and a clear
-        focus on long-term product quality.
-      </p>
-    </div>
+                <p>
+                  We work closely with pharmaceutical and veterinary partners to deliver dependable
+                  intermediates backed by responsive communication, careful documentation and a clear
+                  focus on long-term product quality.
+                </p>
+                <p>
+                  From product development to ongoing supply, our team remains committed to practical
+                  solutions, dependable timelines and the high standards required by modern animal-health
+                  and pharmaceutical markets.
+                </p>
+              </div>
             </Reveal>
           </div>
 
