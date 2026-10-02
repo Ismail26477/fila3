@@ -18,7 +18,7 @@ const slides = [
     desktopPosition: "center center",
 
     // Mobile position
-    mobilePosition: "58% center",
+    mobilePosition: "42% center",
   },
 
   {
